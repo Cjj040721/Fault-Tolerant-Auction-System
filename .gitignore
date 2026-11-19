@@ -1,0 +1,11 @@
+target/
+.pids/
+*.class
+*.jar
+*.log
+.DS_Store
+.idea/
+.vscode/
+.env
+.env.*
+!.env.example
