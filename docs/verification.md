@@ -46,3 +46,13 @@ Ran the same client again and verified:
 - Bidding, owner checks, closing, and list operations continued successfully.
 
 The run used Java bytecode target 17 and the existing Maven configuration. Netty emitted JDK deprecation warnings but did not affect the test results.
+
+
+## Automated CI and Regression Tests (2026-11-20)
+
+Added JUnit 5 and Surefire to both Maven modules, plus `.github/workflows/tests.yml` on Java 17.
+
+- Part 1: `AuctionImplTest` verifies registration, unknown users, reserve and highest-bid rules, owner-only closing, winner price, and closed-item behaviour.
+- Part 2: five `ReplicaImplTest` cases verify monotonic IDs and state application, minority acknowledgement rejection, no application across log gaps, new-leader sequence continuity, and non-leader write rejection.
+- `part2/integration_test.sh` starts five real replicas, waits for all five ready markers, runs the client, stops `replica1`, and runs the client again. It asserts `replica2` election, user IDs continuing at 5, item IDs at 3, and the expected winner price.
+- Local Maven tests and the real five-replica failover script passed before the workflow was pushed.

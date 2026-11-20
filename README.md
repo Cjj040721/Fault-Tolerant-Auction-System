@@ -10,6 +10,7 @@ A single-server auction and a five-replica variant demonstrating thread-safe sta
 [![gRPC](https://img.shields.io/badge/gRPC-Client_API-2AA887)](https://grpc.io/)
 [![Java RMI](https://img.shields.io/badge/Java_RMI-Replica_Communication-0072B2)](#architecture)
 [![Maven](https://img.shields.io/badge/Maven-Build-C71A36?logo=apachemaven&logoColor=white)](https://maven.apache.org/)
+[![Tests](https://github.com/Cjj040721/Fault-Tolerant-Auction-System/actions/workflows/tests.yml/badge.svg)](https://github.com/Cjj040721/Fault-Tolerant-Auction-System/actions/workflows/tests.yml)
 [![Verification](https://img.shields.io/badge/Failover-Verified-6E56CF)](#verification)
 
 [Overview](#overview) · [Architecture](#architecture) · [Quick Start](#quick-start) · [Failover Demo](#failover-demo) · [Verification](#verification) · [Limitations](#limitations)
@@ -132,6 +133,8 @@ In the verified run, `replica2` became the new sequencer. Registration continued
 
 | Check | Result |
 | --- | --- |
+| Part 1 JUnit | Auction rules, unknown users, reserve prices, and owner checks passed |
+| Part 2 JUnit | **5 tests passed**: leader writes, minority rejection, gap handling, sequence continuity, non-leader rejection |
 | Part 1 Maven build | Passed, including protobuf and gRPC generation |
 | Part 2 Maven build | Passed, including protobuf and gRPC generation |
 | Auction rules | Reserve price, highest bid, unknown users, and owner checks behaved as expected |
